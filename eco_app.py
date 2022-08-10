@@ -25,6 +25,10 @@ if options == "Economic Inputs":
 
 elif options == "Technical Inputs":
     time = int(st.number_input("Enter the time for the project in years:"))
+    value = [
+        st.number_input(f"Enter the value for year {i}: ")
+        for i, year in enumerate(range(time + 1))
+    ]
     wells_type = st.selectbox(
         "Choose the well type", ("Horizontal", "Directional", "Vertical")
     )
@@ -54,8 +58,6 @@ elif options == "Technical Inputs":
 
     # Table of years
     st.subheader("Timeline")
-    df = pd.DataFrame(
-        np.random.randn(20, time + 1), columns=[f"Year {i}" for i in range(time + 1)]
-    )
+    df = pd.DataFrame(columns=[f"Year {i}" for i in range(time + 1)])
     df["Well Type"] = wells_type
     st.dataframe(df)
