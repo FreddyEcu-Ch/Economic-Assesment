@@ -29,25 +29,31 @@ elif options == "Technical Inputs":
         "Choose the well type", ("Horizontal", "Directional", "Vertical")
     )
     if wells_type == "Horizontal":
-        q = st.number_input("Enter the flow rate for a horizontal well: ")
+        q = st.number_input(f"Enter the flow rate for a {wells_type} well: ")
     elif wells_type == "Directional":
-        q = st.number_input("Enter the flow rate for a directional well: ")
+        q = st.number_input(f"Enter the flow rate for a {wells_type} well: ")
     elif wells_type == "Vertical":
-        q = st.number_input("Enter the flow rate for a vertical well: ")
+        q = st.number_input(f"Enter the flow rate for a {wells_type} well: ")
 
     wo_type = st.selectbox(
         "Choose the workover type",
         ("Upsizing", "Acid Stimulation", "Hydraulic fracturing"),
     )
     if wo_type == "Upsizing":
-        dq = st.number_input("Enter the enhanced percentage of flow rate: ")
+        dq = st.number_input(
+            f"Enter the enhanced percentage of flow rate due to {wo_type}: "
+        )
     elif wo_type == "Acid Stimulation":
-        dq = st.number_input("Enter the enhanced percentage of flow rate: ")
+        dq = st.number_input(
+            f"Enter the enhanced percentage of flow rate due to {wo_type}: "
+        )
     elif wo_type == "Hydraulic fracturing":
-        dq = st.number_input("Enter the enhanced percentage of flow rate: ")
+        dq = st.number_input(
+            f"Enter the enhanced percentage of flow rate due to {wo_type}: "
+        )
 
     # Table of years
-    st.subheader('Timeline')
+    st.subheader("Timeline")
     df = pd.DataFrame(
         np.random.randn(20, time + 1), columns=[f"Year {i}" for i in range(time + 1)]
     )
