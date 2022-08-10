@@ -24,7 +24,7 @@ if options == "Economic Inputs":
     capex = st.number_input("Enter the initial investment")
 
 elif options == "Technical Inputs":
-    time = st.number_input("Enter the time for the project in years:")
+    time = int(st.number_input("Enter the time for the project in years:"))
     wells_type = st.selectbox(
         "Choose the well type", ("Horizontal", "Directional", "Vertical")
     )
@@ -46,8 +46,10 @@ elif options == "Technical Inputs":
     elif wo_type == "Hydraulic fracturing":
         dq = st.number_input("Enter the enhanced percentage of flow rate: ")
 
+    # Table of years
+    st.subheader('Timeline')
     df = pd.DataFrame(
-        np.random.randn(20, 11), columns=[f"Year {i}" for i in range(int(time) + 1)]
+        np.random.randn(20, time + 1), columns=[f"Year {i}" for i in range(time + 1)]
     )
     df["Well Type"] = wells_type
     st.dataframe(df)
