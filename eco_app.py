@@ -23,6 +23,7 @@ if options == "Economic Inputs":
     taxes = st.number_input("Enter the taxes: ")
     capex = st.number_input("Enter the initial investment")
 
+# Technical inputs
 elif options == "Technical Inputs":
     # Time of the project to assess
     time = int(st.number_input("Enter the time for the project in years:"))
@@ -69,14 +70,14 @@ elif options == "Technical Inputs":
             f"Enter the enhanced percentage of flow rate due to {wo_type}: "
         )
 
-    # Table of years for wells type
+    # Table of years for wells types
     st.subheader("Timeline for Wells Type")
     values_dict = {f"Year {i}": [value] for i, value in enumerate(values)}
     df = pd.DataFrame(values_dict, columns=[f"Year {i}" for i in range(time + 1)])
     df["Well Type"] = wells_type
     st.dataframe(df)
 
-    # Table of years for Workover (WO)
+    # Table of years for Workovers (WO)
     st.subheader("Timeline for Workovers (WO)")
     values_dict_wo = {f"Year {i}": [value] for i, value in enumerate(values_wo)}
     df_wo = pd.DataFrame(values_dict_wo, columns=[f"Year {i}" for i in range(time + 1)])
