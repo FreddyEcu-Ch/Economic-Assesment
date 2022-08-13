@@ -81,5 +81,5 @@ elif options == "Technical Inputs":
     st.subheader("Timeline for Workovers (WO)")
     values_dict_wo = {f"Year {i}": [value] for i, value in enumerate(values_wo)}
     df_wo = pd.DataFrame(values_dict_wo, columns=[f"Year {i}" for i in range(time + 1)])
-    df["WO Type"] = wo_type
+    df_wo["WO Type"] = wo_type
     st.dataframe(df_wo)
