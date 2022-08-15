@@ -35,6 +35,7 @@ elif options == "Technical Inputs":
     )
     if wells_type == "Horizontal":
         q = st.number_input(f"Enter the flow rate for a {wells_type} well: ")
+
     elif wells_type == "Directional":
         q = st.number_input(f"Enter the flow rate for a {wells_type} well: ")
     elif wells_type == "Vertical":
