@@ -4,7 +4,7 @@ import streamlit as st
 from streamlit_option_menu import option_menu
 
 # Title
-st.title("**Tuma App**")
+st.title("**Economic Assessment App**")
 st.write("This app is about...")
 
 # Create menu of options
@@ -21,6 +21,7 @@ if options == "Economic Inputs":
     inflation = st.number_input("Enter the inflation: ")
     oil_price = st.number_input("Enter the oil price: ")
     taxes = st.number_input("Enter the taxes: ")
+    price_trending = st.number_input("Enter the price trending in %")
     capex = st.number_input("Enter the initial investment")
 
 # Technical inputs
