@@ -4,7 +4,7 @@ import streamlit as st
 from streamlit_option_menu import option_menu
 
 # Title
-st.title("**Tuma App**")
+st.title("**Economic Assessment App**")
 st.write("This app is about...")
 
 # Create menu of options
@@ -21,15 +21,29 @@ if options == "Economic Inputs":
     inflation = st.number_input("Enter the inflation: ")
     oil_price = st.number_input("Enter the oil price: ")
     taxes = st.number_input("Enter the taxes: ")
+    price_trending = st.number_input("Enter the price trending in %")
     capex = st.number_input("Enter the initial investment")
 
+# Technical inputs
 elif options == "Technical Inputs":
+    # Time of the project to assess
     time = int(st.number_input("Enter the time for the project in years:"))
+
+    # Number of wells
+    st.subheader("**Number of Wells**")
+    # Values for wells types
     values = [
-        st.number_input(f"Enter the value for year {i}: ")
+        st.number_input(f"Enter the number of drilled wells for year {i}: ")
         for i, year in enumerate(range(time + 1))
     ]
 
+    # Number of workovers
+    st.subheader("**Number of Workovers (WO)**")
+    # Values for Workovers
+    values_wo = [
+        st.number_input(f"Enter the number of wells interventions for year {i}: ")
+        for i in range(time + 1)
+    ]
     wells_type = st.selectbox(
         "Choose the well type", ("Horizontal", "Directional", "Vertical")
     )
@@ -58,10 +72,16 @@ elif options == "Technical Inputs":
             f"Enter the enhanced percentage of flow rate due to {wo_type}: "
         )
 
-    # Table of years
-    st.subheader("Timeline")
+    # Table of years for wells types
+    st.subheader("Timeline for Wells Type")
     values_dict = {f"Year {i}": [value] for i, value in enumerate(values)}
-    print(values_dict)
     df = pd.DataFrame(values_dict, columns=[f"Year {i}" for i in range(time + 1)])
     df["Well Type"] = wells_type
     st.dataframe(df)
+
+    # Table of years for Workovers (WO)
+    st.subheader("Timeline for Workovers (WO)")
+    values_dict_wo = {f"Year {i}": [value] for i, value in enumerate(values_wo)}
+    df_wo = pd.DataFrame(values_dict_wo, columns=[f"Year {i}" for i in range(time + 1)])
+    df_wo["WO Type"] = wo_type
+    st.dataframe(df_wo)
