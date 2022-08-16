@@ -25,15 +25,17 @@ if options == "Economic Inputs":
 
 elif options == "Technical Inputs":
     time = int(st.number_input("Enter the time for the project in years:"))
-    value = [
+    values = [
         st.number_input(f"Enter the value for year {i}: ")
         for i, year in enumerate(range(time + 1))
     ]
+
     wells_type = st.selectbox(
         "Choose the well type", ("Horizontal", "Directional", "Vertical")
     )
     if wells_type == "Horizontal":
         q = st.number_input(f"Enter the flow rate for a {wells_type} well: ")
+
     elif wells_type == "Directional":
         q = st.number_input(f"Enter the flow rate for a {wells_type} well: ")
     elif wells_type == "Vertical":
@@ -58,6 +60,8 @@ elif options == "Technical Inputs":
 
     # Table of years
     st.subheader("Timeline")
-    df = pd.DataFrame(columns=[f"Year {i}" for i in range(time + 1)])
+    values_dict = {f"Year {i}": [value] for i, value in enumerate(values)}
+    print(values_dict)
+    df = pd.DataFrame(values_dict, columns=[f"Year {i}" for i in range(time + 1)])
     df["Well Type"] = wells_type
     st.dataframe(df)
